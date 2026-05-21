@@ -1,84 +1,60 @@
 # Leave Management System
 
-A beginner-friendly full-stack MERN app for managing employee leave requests.
+This is a basic full stack MERN project for managing employee leave requests. It allows employees to apply for leave and admins to approve or reject them.
 
 ---
 
-## Folder Structure
+## Project Structure
 
-```
-leave-management/
-├── client/
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── LeaveCard.js
-│   │   ├── pages/
-│   │   │   ├── LoginPage.js
-│   │   │   ├── RegisterPage.js
-│   │   │   ├── EmployeeDashboard.js
-│   │   │   └── AdminDashboard.js
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   ├── App.js
-│   │   ├── App.css
-│   │   └── index.js
-│   └── package.json
-│
-├── server/
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   └── leaveController.js
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Leave.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   └── leaveRoutes.js
-│   ├── db.js
-│   ├── index.js
-│   ├── .env.example
-│   └── package.json
-│
-└── README.md
-```
+The project has two main parts:
+
+* client → React frontend
+* server → Node.js and Express backend
+
+Inside client:
+
+* components → reusable UI components
+* pages → login, register, dashboards
+* services → API calls
+
+Inside server:
+
+* controllers → logic for auth and leave
+* models → MongoDB schemas
+* routes → API routes
+* db.js → database connection
+* index.js → main server file
 
 ---
 
-## Setup Instructions
+## Setup
 
-### Step 1: Get MongoDB Atlas URI
+### 1. MongoDB
 
-1. Go to [https://cloud.mongodb.com](https://cloud.mongodb.com)
-2. Create a free cluster
-3. Create a database user
-4. Allow IP access (0.0.0.0/0)
-5. Copy connection string
+Create a free cluster in MongoDB Atlas and get the connection string.
 
 Example:
 
-```
-mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/leavemanagement?retryWrites=true&w=majority
-```
+mongodb+srv://username:password@cluster.mongodb.net/leavemanagement
 
----
 
-### Step 2: Backend Setup
+
+### 2. Backend
+
+Go to server folder:
 
 ```
 cd server
-cp .env.example .env
 ```
 
-Edit `.env`:
+Create a .env file and add:
 
 ```
 MONGO_URI=your_mongodb_uri
 PORT=5000
 ```
 
-Run:
+Install and run:
 
 ```
 npm install
@@ -87,7 +63,9 @@ npm run dev
 
 ---
 
-### Step 3: Frontend Setup
+### 3. Frontend
+
+Open new terminal:
 
 ```
 cd client
@@ -95,90 +73,66 @@ npm install
 npm start
 ```
 
-App runs at:
-
-```
-http://localhost:3000
-```
+App will run on localhost:3000
 
 ---
 
-## Default Login
+## Default Accounts
 
 Admin
-Email: [admin@test.com](mailto:admin@test.com)
-Password: 1234
+[admin@test.com](mailto:admin@test.com)
+1234
 
 Employee
-Email: [user@test.com](mailto:user@test.com)
-Password: 1234
+[user@test.com](mailto:user@test.com)
+1234
 
 ---
 
-## API Endpoints
+## Features
 
-POST   /api/auth/register
-POST   /api/auth/login
-POST   /api/leaves
-GET    /api/leaves
-PUT    /api/leaves/:id
+* User registration and login
+* Employee can apply for leave
+* Admin can view all leave requests
+* Admin can approve or reject leave
+* Status is updated for employee
 
 ---
 
-## Flow
+## API
 
-Employee registers or logs in
-Employee applies for leave
-Admin logs in
-Admin views all leave requests
+POST /api/auth/register
+POST /api/auth/login
+POST /api/leaves
+GET /api/leaves
+PUT /api/leaves/:id
+
+---
+
+## How it works
+
+Employee logs in and applies for leave
+Admin logs in and checks requests
 Admin approves or rejects
-Employee sees updated status
+Employee can see the updated status
 
 ---
 
 ## Deployment
 
-Backend (Render):
+Backend can be deployed on Render
+Frontend can be deployed on Vercel
 
-* Push to GitHub
-* Create Web Service
-* Root: server
-* Build: npm install
-* Start: node index.js
-* Add MONGO_URI
-
-Frontend (Vercel):
-
-* Import repo
-* Root: client
-* Update API base URL
-* Deploy
+Just connect your GitHub repo and set environment variables.
 
 ---
 
-## Tech Stack
+## Tech used
 
-Frontend: React
-Backend: Node.js, Express
-Database: MongoDB Atlas
-Auth: localStorage
-HTTP: Axios
-Password: bcryptjs
+React for frontend
+Node.js and Express for backend
+MongoDB for database
+Axios for API calls
+bcryptjs for password hashing
 
 ---
-
-## Packages
-
-Backend:
-express
-mongoose
-bcryptjs
-cors
-dotenv
-nodemon
-
-Frontend:
-react
-react-dom
-axios
-react-scripts
