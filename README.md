@@ -2,7 +2,6 @@
 
 This is a basic full stack MERN project for managing employee leave requests. It allows employees to apply for leave and admins to approve or reject them.
 
----
 
 ## Project Structure
 
@@ -25,21 +24,10 @@ Inside server:
 * db.js → database connection
 * index.js → main server file
 
----
 
 ## Setup
 
-### 1. MongoDB
-
-Create a free cluster in MongoDB Atlas and get the connection string.
-
-Example:
-
-mongodb+srv://username:password@cluster.mongodb.net/leavemanagement
-
-
-
-### 2. Backend
+### Backend
 
 Go to server folder:
 
@@ -61,9 +49,8 @@ npm install
 npm run dev
 ```
 
----
 
-### 3. Frontend
+### Frontend
 
 Open new terminal:
 
@@ -75,7 +62,6 @@ npm start
 
 App will run on localhost:3000
 
----
 
 ## Default Accounts
 
@@ -87,7 +73,6 @@ Employee
 [user@test.com](mailto:user@test.com)
 1234
 
----
 
 ## Features
 
@@ -97,17 +82,6 @@ Employee
 * Admin can approve or reject leave
 * Status is updated for employee
 
----
-
-## API
-
-POST /api/auth/register
-POST /api/auth/login
-POST /api/leaves
-GET /api/leaves
-PUT /api/leaves/:id
-
----
 
 ## How it works
 
@@ -116,16 +90,6 @@ Admin logs in and checks requests
 Admin approves or rejects
 Employee can see the updated status
 
----
-
-## Deployment
-
-Backend can be deployed on Render
-Frontend can be deployed on Vercel
-
-Just connect your GitHub repo and set environment variables.
-
----
 
 ## Tech used
 
