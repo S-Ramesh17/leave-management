@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Base URL for the backend API
 // In development, React proxy (package.json) forwards /api to localhost:5000
-const API_BASE = "/api";
+const API_BASE = "https://leave-management-pzig.onrender.com/api";
 
 // ─── AUTH API CALLS ───────────────────────────────────────────────────────────
 
