@@ -1,44 +1,44 @@
-# 📋 Leave Management System
+# Leave Management System
 
 A beginner-friendly full-stack MERN app for managing employee leave requests.
 
 ---
 
-## 🗂️ Folder Structure
+## Folder Structure
 
 ```
 leave-management/
-├── client/                      ← React frontend
+├── client/
 │   ├── public/
 │   │   └── index.html
 │   ├── src/
 │   │   ├── components/
-│   │   │   └── LeaveCard.js     ← Reusable leave card component
+│   │   │   └── LeaveCard.js
 │   │   ├── pages/
 │   │   │   ├── LoginPage.js
 │   │   │   ├── RegisterPage.js
 │   │   │   ├── EmployeeDashboard.js
 │   │   │   └── AdminDashboard.js
 │   │   ├── services/
-│   │   │   └── api.js           ← All API call functions
-│   │   ├── App.js               ← Main React component
-│   │   ├── App.css              ← All styles
-│   │   └── index.js             ← Entry point
+│   │   │   └── api.js
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   └── index.js
 │   └── package.json
 │
-├── server/                      ← Node.js + Express backend
+├── server/
 │   ├── controllers/
-│   │   ├── authController.js    ← Login & register logic
-│   │   └── leaveController.js   ← Leave CRUD logic
+│   │   ├── authController.js
+│   │   └── leaveController.js
 │   ├── models/
-│   │   ├── User.js              ← User MongoDB schema
-│   │   └── Leave.js             ← Leave MongoDB schema
+│   │   ├── User.js
+│   │   └── Leave.js
 │   ├── routes/
-│   │   ├── authRoutes.js        ← Auth API routes
-│   │   └── leaveRoutes.js       ← Leave API routes
-│   ├── db.js                    ← MongoDB connection
-│   ├── index.js                 ← Server entry point
-│   ├── .env.example             ← Environment variable template
+│   │   ├── authRoutes.js
+│   │   └── leaveRoutes.js
+│   ├── db.js
+│   ├── index.js
+│   ├── .env.example
 │   └── package.json
 │
 └── README.md
@@ -46,171 +46,139 @@ leave-management/
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### Step 1: Get MongoDB Atlas URI
 
 1. Go to [https://cloud.mongodb.com](https://cloud.mongodb.com)
-2. Sign up / log in
-3. Click **"Build a Database"** → Choose **Free tier (M0)**
-4. Set username + password (remember these!)
-5. Under **Network Access** → Add IP: `0.0.0.0/0` (allow all)
-6. Click **"Connect"** → **"Connect your application"**
-7. Copy the connection string — looks like:
-   ```
-   mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
-   ```
-8. Replace `<password>` with your actual password and add your DB name:
-   ```
-   mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/leavemanagement?retryWrites=true&w=majority
-   ```
+2. Create a free cluster
+3. Create a database user
+4. Allow IP access (0.0.0.0/0)
+5. Copy connection string
+
+Example:
+
+```
+mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/leavemanagement?retryWrites=true&w=majority
+```
 
 ---
 
-### Step 2: Set Up the Backend
+### Step 2: Backend Setup
 
-```bash
-# Go into the server folder
+```
 cd server
-
-# Copy the .env example and fill in your values
 cp .env.example .env
 ```
 
-Open `server/.env` and paste your MongoDB URI:
+Edit `.env`:
 
-```env
-MONGO_URI=mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/leavemanagement?retryWrites=true&w=majority
+```
+MONGO_URI=your_mongodb_uri
 PORT=5000
 ```
 
-```bash
-# Install backend dependencies
-npm install
+Run:
 
-# Start the backend server
+```
+npm install
 npm run dev
 ```
 
-You should see:
-```
-🚀 Server running on port 5000
-✅ MongoDB connected successfully
-✅ Default admin created: admin@test.com / 1234
-✅ Default employee created: user@test.com / 1234
-```
-
 ---
 
-### Step 3: Set Up the Frontend
+### Step 3: Frontend Setup
 
-```bash
-# Open a NEW terminal window
-# Go into the client folder
+```
 cd client
-
-# Install frontend dependencies
 npm install
-
-# Start the React app
 npm start
 ```
 
-The app will open automatically at: **http://localhost:3000**
-
----
-
-## 🔐 Default Login Accounts
-
-| Role     | Email           | Password |
-|----------|-----------------|----------|
-| Admin    | admin@test.com  | 1234     |
-| Employee | user@test.com   | 1234     |
-
-These are created automatically when the server starts.
-
----
-
-## 🔌 API Endpoints
-
-| Method | Endpoint            | Description                     |
-|--------|---------------------|---------------------------------|
-| POST   | /api/auth/register  | Register new employee           |
-| POST   | /api/auth/login     | Login                           |
-| POST   | /api/leaves         | Apply for leave                 |
-| GET    | /api/leaves         | Get leaves (role-based)         |
-| PUT    | /api/leaves/:id     | Admin: approve or reject leave  |
-
----
-
-## 🔄 How It Works
+App runs at:
 
 ```
-Employee → Register/Login → Apply for Leave
-                                  ↓
-                    Admin → Login → View All Leaves
-                                  ↓
-                    Admin → Approve or Reject
-                                  ↓
-                    Employee → See Updated Status
+http://localhost:3000
 ```
 
 ---
 
-## 🚀 Deployment Instructions
+## Default Login
 
-### Deploy Backend (Render — Free)
+Admin
+Email: [admin@test.com](mailto:admin@test.com)
+Password: 1234
 
-1. Push your code to GitHub
-2. Go to [https://render.com](https://render.com) → New → Web Service
-3. Connect your GitHub repo
-4. Set:
-   - **Root Directory**: `server`
-   - **Build Command**: `npm install`
-   - **Start Command**: `node index.js`
-5. Add Environment Variable: `MONGO_URI` = your Atlas URI
-6. Deploy!
-
-### Deploy Frontend (Vercel — Free)
-
-1. Go to [https://vercel.com](https://vercel.com)
-2. Import your GitHub repo
-3. Set **Root Directory**: `client`
-4. In `client/src/services/api.js`, change `API_BASE` to your Render URL:
-   ```js
-   const API_BASE = "https://your-app.onrender.com/api";
-   ```
-5. Deploy!
+Employee
+Email: [user@test.com](mailto:user@test.com)
+Password: 1234
 
 ---
 
-## 🧠 Tech Stack
+## API Endpoints
 
-- **Frontend**: React 18 (no TypeScript, no Tailwind)
-- **Backend**: Node.js + Express
-- **Database**: MongoDB Atlas with Mongoose
-- **Auth**: localStorage (beginner-friendly, no JWT)
-- **HTTP Client**: Axios
-- **Password**: bcryptjs hashing
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/leaves
+GET    /api/leaves
+PUT    /api/leaves/:id
 
 ---
 
-## 📦 Packages Used
+## Flow
 
-### Backend
-| Package    | Purpose                    |
-|------------|----------------------------|
-| express    | Web server framework       |
-| mongoose   | MongoDB object modeling    |
-| bcryptjs   | Password hashing           |
-| cors       | Allow cross-origin requests|
-| dotenv     | Load .env variables        |
-| nodemon    | Auto-restart on file change|
+Employee registers or logs in
+Employee applies for leave
+Admin logs in
+Admin views all leave requests
+Admin approves or rejects
+Employee sees updated status
 
-### Frontend
-| Package        | Purpose              |
-|----------------|----------------------|
-| react          | UI library           |
-| react-dom      | DOM rendering        |
-| axios          | HTTP requests        |
-| react-scripts  | Create React App CLI |
+---
+
+## Deployment
+
+Backend (Render):
+
+* Push to GitHub
+* Create Web Service
+* Root: server
+* Build: npm install
+* Start: node index.js
+* Add MONGO_URI
+
+Frontend (Vercel):
+
+* Import repo
+* Root: client
+* Update API base URL
+* Deploy
+
+---
+
+## Tech Stack
+
+Frontend: React
+Backend: Node.js, Express
+Database: MongoDB Atlas
+Auth: localStorage
+HTTP: Axios
+Password: bcryptjs
+
+---
+
+## Packages
+
+Backend:
+express
+mongoose
+bcryptjs
+cors
+dotenv
+nodemon
+
+Frontend:
+react
+react-dom
+axios
+react-scripts
